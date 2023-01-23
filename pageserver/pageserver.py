@@ -90,9 +90,25 @@ def respond(sock):
     log.info("Request was {}\n***\n".format(request))
 
     parts = request.split()
+    options = get_options()
+    docroot = options.DOCROOT
     if len(parts) > 1 and parts[0] == "GET":
-        transmit(STATUS_OK, sock)
-        transmit(CAT, sock)
+        if ".." in parts[1] or "~" in parts[1]:
+           log.info("Illegal request: {}".format(request))
+           transmit(STATUS_FORBIDDEN, sock)
+           transmit("\nThis request is illegal: {}\n".format(request),sock)
+        else:
+            address = docroot[:-1] + parts[1]
+            try:
+                file = open(address, "r")
+                read_content = file.read() 
+                transmit(read_content,sock)   
+                transmit(STATUS_OK, sock)
+                file.close()
+            except Exception as e: 
+                log.info("File doesn't exist:{}".format(request))
+                transmit(STATUS_NOT_FOUND, sock)
+                transmit("\nfile does not exist: {}\n".format(request),sock)
     else:
         log.info("Unhandled request: {}".format(request))
         transmit(STATUS_NOT_IMPLEMENTED, sock)
