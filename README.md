@@ -14,16 +14,11 @@ Directory structure:
 
 * `Makefile` here refers to the two scripts provided: `start.sh` and `stop.sh`. The former starts the server, by calling `pageserver.py`. It will also store its PID (process id), in order to kill it later through `stop.sh`. However, if you notice that it failed to do so, you can kill it manually by looking up the PID.
 
-## Tasks
-
-The goal of this project is to implement a "file checking" logic for the existing server. Currently, if you set it up and start the server, it will just serve a page with a cat figure. What is expected is for the server to handle the requests as follows:
-
-* If a file exists in `pages/` (i.e. `trivia.html`, any name, any extention or format) exists, transmit `200 OK` header followed by that file. If the file doesn't exist, transmit `404 Not Found` error code in the header along with a message in the body explaining further. If a request includes illegal characters (`..` or `~`), the response should be a `403 Forbidden` error, again with a message in the body explaining it.
-
-* Update `README` with your name, info, and a brief description of the project.
-
-* You will submit your credentials.ini in Canvas. It should include your name and repo URL.
-
+## Tasks INFO
+NAME: TONG GUAN
+INFO: project 1 of class 322
+Brief Description:
+The project 1 is a simple web server. We use the socket to listen the port and serve the connection. In our specified local host, if you type the existed html or css file, you can directly see them in broswer. However, if you type some thing illegal, like ~~ or ..,, you will get 403 STATUS_FORBIDDEN. Or you type a filethat does not exist in our folder, you will get the 404 STATUS_NOT FOUND.
 
 ## Grading Rubric
 
