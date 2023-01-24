@@ -22,7 +22,7 @@ log = logging.getLogger(__name__)
 
 import socket    # Basic TCP/IP communication on the internet
 import _thread   # Response computation runs concurrently with main program
-
+import os.path
 
 def listen(portnum):
     """
@@ -98,18 +98,16 @@ def respond(sock):
            transmit(STATUS_FORBIDDEN, sock)
            transmit("\nThis request is illegal: {}\n".format(request),sock)
         else:
-            address = docroot + parts[1]
-            try:
-                file = open(address, "r")
-                read_content = file.read() 
-                transmit(read_content,sock)   
-                transmit(STATUS_OK, sock)
-            except Exception as e: 
+            path = docroot + parts[1]
+            if os.path.exists(path):
+                with open(path, "r") as file:
+                    read_content = file.read() 
+                    transmit(read_content,sock)   
+                    transmit(STATUS_OK, sock)
+            else: 
                 log.info("File doesn't exist:{}".format(request))
                 transmit(STATUS_NOT_FOUND, sock)
                 transmit("\nfile does not exist: {}\n".format(request),sock)
-            else:
-                file.close()
     else:
         log.info("Unhandled request: {}".format(request))
         transmit(STATUS_NOT_IMPLEMENTED, sock)
