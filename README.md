@@ -15,10 +15,10 @@ Directory structure:
 * `Makefile` here refers to the two scripts provided: `start.sh` and `stop.sh`. The former starts the server, by calling `pageserver.py`. It will also store its PID (process id), in order to kill it later through `stop.sh`. However, if you notice that it failed to do so, you can kill it manually by looking up the PID.
 
 ## Tasks INFO
-NAME: TONG GUAN
-INFO: project 1 of class 322
-Brief Description:
-The project 1 is a simple web server. We use the socket to listen the port and serve the connection. In our specified local host, if you type the existed html or css file, you can directly see them in broswer. However, if you type some thing illegal, like ~~ or ..,, you will get 403 STATUS_FORBIDDEN. Or you type a filethat does not exist in our folder, you will get the 404 STATUS_NOT FOUND.
+*NAME: TONG GUAN
+*INFO: project 1 of class 322
+*Brief Description:
+*The project 1 is a simple web server. We use the socket to listen to the port and serve the connection. In our specified local host, if you type the existed html or css file, you can directly see them in broswer. However, if you type some thing illegal, like "~~" or "..", you will get 403 STATUS_FORBIDDEN. Or you type a filename that does not exist in our folder, you will get the 404 STATUS_NOT FOUND.
 
 ## Grading Rubric
 
