@@ -102,8 +102,8 @@ def respond(sock):
             if os.path.exists(path):
                 with open(path, "r") as file:
                     read_content = file.read() 
-                    transmit(read_content,sock)   
                     transmit(STATUS_OK, sock)
+                    transmit(read_content,sock)   
             else: 
                 log.info("File doesn't exist:{}".format(request))
                 transmit(STATUS_NOT_FOUND, sock)
